@@ -10,7 +10,7 @@ const (
   port = ":5555"
 )
 
-func parse_body(w http.ResponseWriter, r *http.Request) {
+func parseBody(w http.ResponseWriter, r *http.Request) {
   r.ParseForm()
 
   fmt.Printf("NUMBER => %s\n", r.FormValue("number"))
@@ -26,7 +26,7 @@ func main() {
   mux := http.NewServeMux()
   fmt.Printf("Started server at http://localhost%v.\n", port)
 
-  mux.HandleFunc("/", parse_body)
+  mux.HandleFunc("/", parseBody)
 
   http.ListenAndServe(port, mux)
 }
