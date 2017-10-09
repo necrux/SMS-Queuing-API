@@ -7,7 +7,7 @@ import (
 )
 
 const (
-  port = ":5555"
+  socket = "127.0.0.1:5555"
 )
 
 func parseBody(w http.ResponseWriter, r *http.Request) {
@@ -24,9 +24,9 @@ func parseBody(w http.ResponseWriter, r *http.Request) {
 
 func main() {
   mux := http.NewServeMux()
-  fmt.Printf("Started server at http://localhost%v.\n", port)
+  fmt.Printf("Started server at %v.\n", socket)
 
-  mux.HandleFunc("/", parseBody)
+  mux.HandleFunc("/send", parseBody)
 
-  http.ListenAndServe(port, mux)
+  http.ListenAndServe(socket, mux)
 }
